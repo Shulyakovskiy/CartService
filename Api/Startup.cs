@@ -1,5 +1,7 @@
 using Api.Middleware;
 using Application.Cart.Query;
+using Infrastructure.Job.Cart;
+using Infrastructure.Scheduler;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +12,10 @@ using Microsoft.OpenApi.Models;
 using Persistence.Core;
 using Persistence.Core.Services;
 using Persistence.Repository.Cart;
+using Persistence.Repository.Cart.Services;
+using Quartz;
+using Quartz.Impl;
+using Quartz.Spi;
 
 namespace Api
 {
@@ -26,6 +32,21 @@ namespace Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+
+            #region Scheduler
+
+            services.AddSingleton<IJobFactory, JobFactory>();
+            services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();
+            services.AddHostedService<QuartzHostedService>();
+
+            services.AddSingleton<CleanCartJob>();
+            services.AddSingleton(new JobSchedule(
+                jobType: typeof(CleanCartJob),
+                cronExpression: "0 2 * * *")); //“At 02:00.”
+
+            #endregion
+
             services.AddCors(opt =>
             {
                 opt.AddPolicy("CorsPolicy", policy =>
@@ -48,6 +69,7 @@ namespace Api
             });
             services.AddScoped<IRepository, CartServiceRepository>();
             services.AddScoped<ICartService, CartQuery>();
+            services.AddScoped<IJobCartService, JobCartQuery>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

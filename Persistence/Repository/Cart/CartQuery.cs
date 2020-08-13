@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Common.Dal;
 using Dapper;
 using Persistence.Core.Services;
+using Persistence.Repository.Cart.Services;
 
 namespace Persistence.Repository.Cart
 {

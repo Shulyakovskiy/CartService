@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Domain.Cart.Dto;
 
-namespace Persistence.Repository.Cart
+namespace Persistence.Repository.Cart.Services
 {
     public interface ICartService
     {
