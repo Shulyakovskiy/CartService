@@ -12,9 +12,9 @@ namespace Api.Controllers
     public class CartController : BaseController
     {
 
-        [Route("List")]
+        [Route("ListCart")]
         [HttpGet]
-        public async Task<ActionResult<List<CartReadDto>>> List(CancellationToken ct)
+        public async Task<ActionResult<List<CartReadDto>>> ListCart(CancellationToken ct)
         {
             return await Mediator.Send(new ListCart.Query(), ct);
         }
@@ -22,6 +22,13 @@ namespace Api.Controllers
         [Route("DeleteItemsCart")]
         [HttpPut]
         public async Task<ActionResult<Unit>> DeleteItemsCart(DeleteProductCart.Command command)
+        {
+            return await Mediator.Send(command);
+        }
+
+        [Route("AddItemsCart")]
+        [HttpPost]
+        public async Task<ActionResult<Unit>> AddItemsCart(DeleteProductCart.Command command)
         {
             return await Mediator.Send(command);
         }

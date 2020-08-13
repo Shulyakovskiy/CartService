@@ -34,8 +34,19 @@ namespace Persistence.Repository.Cart
         public async Task DeleteCartItem(int @cartId, List<int> @productIds)
         {
             await Task.Run(() => _repository.GetConnection(c =>
-               c.Query<Domain.Cart.Entity.Cart>(@"dbo.DelCartItem_Upd", new { @cartId, productIds = @productIds.AsTableValuedParameter("dbo.ValInt") },
+               c.Execute(@"dbo.DelCartItem_Upd", new { @cartId, productIds = @productIds.AsTableValuedParameter("dbo.ValInt") },
             commandType: CommandType.StoredProcedure)));
+        }
+
+
+        /// <summary>
+        /// Добавление продуктов в корзину
+        /// </summary>
+        public async Task AddCartItem(int cartId, List<int> productIds)
+        {
+            await Task.Run(() => _repository.GetConnection(c =>
+                c.Execute(@"dbo.AddCartItem_Upd", new { @cartId, productIds = @productIds.AsTableValuedParameter("dbo.ValInt") },
+                    commandType: CommandType.StoredProcedure)));
         }
     }
 }
