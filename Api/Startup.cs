@@ -1,3 +1,4 @@
+﻿using System;
 using Api.Middleware;
 using Application.Cart.Query;
 using Infrastructure.Job.Cart;
@@ -35,22 +36,21 @@ namespace Api
         {
             services.AddControllers();
 
-
             #region Scheduler
 
-            services.AddSingleton<IJobFactory, JobFactory>();
-            services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();
-            services.AddHostedService<QuartzHostedService>();
-
-            services.AddSingleton<CleanCartJob>();
-            services.AddSingleton(new JobSchedule(
-                jobType: typeof(CleanCartJob),
-                cronExpression: "0 2 * * *")); //�At 02:00.�
-
-            services.AddSingleton<CartCreateReport>();
-            services.AddSingleton(new JobSchedule(
-                jobType: typeof(CartCreateReport),
-                cronExpression: "0 3 * * *")); //�At 03:00.�
+            services.AddScoped<IScopedService, ScopedService>();
+            services.AddCronJob<CartCreateReportJob>(c =>
+            {
+                c.TimeZoneInfo = TimeZoneInfo.Local;
+                //“At 03:00.” - 0 3 * * *" | every seconds 0/10 * * * * ?
+                c.CronExpression = @"0 3 * * *";
+            });
+            services.AddCronJob<CleanCartJob>(c =>
+            {
+                c.TimeZoneInfo = TimeZoneInfo.Local;
+                //“At 02:00.”
+                c.CronExpression = @"0 2 * * *";
+            });
 
             #endregion
 
@@ -74,10 +74,13 @@ namespace Api
                     Title = "CartService API"
                 });
             });
-            services.AddScoped<IRepository, CartServiceRepository>();
+            //TODO: Вынести в отдельные сервисы для планировщика, изменить SCOPE
+            services.AddSingleton<IRepository, CartServiceRepository>();
+            services.AddSingleton<IJobCartService, JobCartQuery>();
+            services.AddSingleton<ISaveDataToSource, SaveDataToSource>();
+
             services.AddScoped<ICartService, CartQuery>();
-            services.AddScoped<IJobCartService, JobCartQuery>();
-            services.AddScoped<ISaveDataToSource, SaveDataToSource>();
+        
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
