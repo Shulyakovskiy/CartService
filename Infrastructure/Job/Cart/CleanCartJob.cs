@@ -26,13 +26,13 @@ namespace Infrastructure.Job.Cart
 
         public override Task StartAsync(CancellationToken cancellationToken)
         {
-            _jobCartService.JobCleanCart();
             _logger.LogInformation("CleanCartJob 3 starts.");
             return base.StartAsync(cancellationToken);
         }
 
         public override Task DoWork(CancellationToken cancellationToken)
         {
+            _jobCartService.JobCleanCart();
             _logger.LogInformation($"{DateTime.Now:hh:mm:ss} CleanCartJob 3 is working.");
             return Task.CompletedTask;
         }

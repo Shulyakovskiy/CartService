@@ -32,16 +32,16 @@ namespace Infrastructure.Job.Cart
 
         public override Task StartAsync(CancellationToken cancellationToken)
         {
-            //Generate Report Data
-            _jobCartService.CreateReportData();
-            //Save File Data
-            SaveFileReport();
             _logger.LogInformation("CartCreateReportJob 3 starts.");
             return base.StartAsync(cancellationToken);
         }
 
         public override Task DoWork(CancellationToken cancellationToken)
         {
+            //Generate Report Data
+            _jobCartService.CreateReportData();
+            //Save File Data
+            SaveFileReport();
             _logger.LogInformation($"{DateTime.Now:hh:mm:ss} CartCreateReportJob 3 is working.");
             return Task.CompletedTask;
         }
