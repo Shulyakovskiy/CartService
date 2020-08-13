@@ -29,6 +29,9 @@ namespace Application.Cart.Command
                 _cartService = cartService;
             }
 
+            /// <summary>
+            /// Удаление произвольного числа продуктов
+            /// </summary>
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
                 var cartId = request.CartId;

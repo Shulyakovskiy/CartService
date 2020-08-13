@@ -26,6 +26,9 @@ namespace Application.Cart.Query
                 _cartService = cartService;
             }
 
+            /// <summary>
+            /// Список корзин с продуктами
+            /// </summary>
             public async Task<List<CartReadDto>> Handle(Query request, CancellationToken cancellationToken)
             {
                 var cartList = await _cartService.ProductGet();

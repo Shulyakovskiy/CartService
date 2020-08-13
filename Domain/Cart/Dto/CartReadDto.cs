@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Domain.Cart.Entity;
+﻿using Domain.Cart.Entity;
 using Newtonsoft.Json;
 
 namespace Domain.Cart.Dto
