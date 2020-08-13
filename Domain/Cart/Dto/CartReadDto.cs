@@ -1,21 +1,24 @@
 ﻿using System.Collections.Generic;
 using Domain.Cart.Entity;
+using Newtonsoft.Json;
 
 namespace Domain.Cart.Dto
 {
     /// <summary>
     /// Список корзин с продуктами
     /// </summary>
-    public class CartDto
+    public class CartReadDto
     {
         /// <summary>
         /// Корзина
         /// </summary>
-        public Entity.Cart Cart { get; set; }
+        [JsonProperty("id")]
+        public int CartId { get; set; }
 
         /// <summary>
         /// Список продуктов
         /// </summary>
-        public IList<Product> Products { get; set; }
+        [JsonProperty("products")]
+        public Product Products { get; set; }
     }
 }

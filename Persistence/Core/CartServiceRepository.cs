@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using Common.Settings;
 using JetBrains.Annotations;
 using Persistence.Core.Services;
@@ -12,12 +13,12 @@ namespace Persistence.Core
     /// </summary>
     public class CartServiceRepository : Repository, IRepository
     {
-        
+
         /// <summary>
         /// Database String Connection
         /// </summary>
-        [CanBeNull]
-        private readonly string _connectionString = AppConfiguration.OnConfiguring()["CartServiceConnection"];
+        [CanBeNull] private readonly string _connectionString =
+            AppConfiguration.OnConfiguring().GetSection("ConnectionStrings:CartServiceConnection").Value;
 
         /// <summary>
         /// Return Sql Server Connection

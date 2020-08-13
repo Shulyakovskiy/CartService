@@ -9,6 +9,11 @@ namespace Persistence.Repository.Cart
         /// <summary>
         /// Список корзин с продуктами
         /// </summary>
-        Task<IEnumerable<CartDto>> ProductGet();
+        Task<IEnumerable<Domain.Cart.Entity.Cart>> ProductGet();
+
+        /// <summary>
+        /// Удаление продуктов из корзины
+        /// </summary>
+        Task DeleteCartItem(int @cartId, List<int> @productIds);
     }
 }
