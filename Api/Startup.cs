@@ -1,6 +1,8 @@
 using Api.Middleware;
 using Application.Cart.Query;
 using Infrastructure.Job.Cart;
+using Infrastructure.Job.Cart.Implements;
+using Infrastructure.Job.Cart.Services;
 using Infrastructure.Scheduler;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -45,6 +47,11 @@ namespace Api
                 jobType: typeof(CleanCartJob),
                 cronExpression: "0 2 * * *")); //“At 02:00.”
 
+            services.AddSingleton<CartCreateReport>();
+            services.AddSingleton(new JobSchedule(
+                jobType: typeof(CartCreateReport),
+                cronExpression: "0 3 * * *")); //“At 03:00.”
+
             #endregion
 
             services.AddCors(opt =>
@@ -70,6 +77,7 @@ namespace Api
             services.AddScoped<IRepository, CartServiceRepository>();
             services.AddScoped<ICartService, CartQuery>();
             services.AddScoped<IJobCartService, JobCartQuery>();
+            services.AddScoped<ISaveDataToSource, SaveDataToSource>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

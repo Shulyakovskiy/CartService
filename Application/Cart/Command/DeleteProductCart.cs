@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using MediatR;
 using Newtonsoft.Json;
-using Persistence.Repository.Cart;
 using Persistence.Repository.Cart.Services;
 
 namespace Application.Cart.Command

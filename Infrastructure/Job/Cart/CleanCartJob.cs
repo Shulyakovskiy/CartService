@@ -4,6 +4,9 @@ using Quartz;
 
 namespace Infrastructure.Job.Cart
 {
+    /// <summary>
+    /// Очистка корзин
+    /// </summary>
     public class CleanCartJob : IJob
     {
         private readonly IJobCartService _jobCartService;
