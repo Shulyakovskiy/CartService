@@ -1,0 +1,133 @@
+{
+	"info": {
+		"_postman_id": "925ec03f-58db-4f70-a7e3-4dc266433820",
+		"name": "CartService",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "List Cart",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"uuid\": \"2c491262-8624-4e61-ace9-e8bb7eb45d26\",\r\n   \"data\": \"MIAGCSqGSIb3DQEHA6CAMIACAQAxggJWMIICUgIBADCCAXswggFlMR8wHQYJKoZIhvcNAQkBFhBpYi1uYWxjaGlrQGJrLnJ1MRgwFgYFKoUDZAESDTEwNDA3MDAyMzE3OTExGjAYBggqhQMDgQMBARIMMDAwNzIxMDA5NzA4MQswCQYDVQQGEwJSVTFIMEYGA1UECAw/MDcg0JrQsNCx0LDRgNC00LjQvdC+LdCR0LDQu9C60LDRgNGB0LrQsNGPINCg0LXRgdC/0YPQsdC70LjQutCwMRcwFQYDVQQHDA7QndCw0LvRjNGH0LjQujEwMC4GA1UECQwn0YPQu9C40YbQsCDQmtCw0LvQuNC90LjQvdCwLCDQtNC+0LwgMjI2MTQwMgYDVQQKDCvQntCe0J4gItCg0KHQpiDQmNC90YTQvi3QkdGD0YXQs9Cw0LvRgtC10YAiMTQwMgYDVQQDDCvQntCe0J4gItCg0KHQpiDQmNC90YTQvi3QkdGD0YXQs9Cw0LvRgtC10YAiAhADZIhdFQDMgOkRTLSNDRbhMB8GCCqFAwcBAQEBMBMGByqFAwICJAAGCCqFAwcBAQICBIGsMIGpMCgEIGiFKHmrVgNHMLGu/H+YUDCT4bWNJKMhQJxfts5880XnBASzBYqsoH0GCSqFAwcBAgUBAaBmMB8GCCqFAwcBAQEBMBMGByqFAwICJAAGCCqFAwcBAQICA0MABEA2knK34B6P91xscT9HmqpUCelTe8gXFh8Qtg22D0+dRF/fP5FQq9GakFqt6o/RX324JaL3Q/glHc9wMPD5y1nxBAjUUyF8UNizbjCABgkqhkiG9w0BBwEwHQYGKoUDAgIVMBMECIa6757OTeI9BgcqhQMCAh8BoIAEHqlbYzhZQlexzZsu3XyRIiUWy2D/GT+JEObirt9YtgAAAAAAAAAAAAA=\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5004/api/cart/listCart",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5004",
+					"path": [
+						"api",
+						"cart",
+						"listCart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Products from Cart",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n    {\r\n        \"cartId\": 1,\r\n        \"userId\": 1,\r\n        \"products\": [\r\n           102\r\n        ]\r\n    }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5004/api/cart/deleteItemsCart",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5004",
+					"path": [
+						"api",
+						"cart",
+						"deleteItemsCart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddItemToCart",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cartId\": 1,\r\n    \"products\": [\r\n      102\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5004/api/cart/additemsCart",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5004",
+					"path": [
+						"api",
+						"cart",
+						"additemsCart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register WebHook",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": 1,\r\n    \"eventName\": \"cart:delete\",\r\n    \"endpointRequest\": \"http://sendgrid.com/api/email/send\",\r\n    \"payload\": \"{\\\"email\\\": \\\"user:@mail.ru\\\", \\\"body\\\": \\\"cart delete\\\"}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5004/api/webhook/register",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5004",
+					"path": [
+						"api",
+						"webhook",
+						"register"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
