@@ -38,11 +38,17 @@ namespace Application.Cart.Query
                     Products =
                         new Product
                         {
-                            Id = c.CartId,
+                            Id = c.ProductId,
                             Cost = c.Cost,
                             ForBonusPoints = c.ForBonusPoints,
                             Name = c.Name
-                        }
+                        },
+                    User = new User
+                    {
+                        UserId = c.UserId,
+                        Username = c.UserName,
+                        Email = c.Email
+                    } 
                 });
                 return resultTo.ToList();
             }

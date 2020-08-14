@@ -15,6 +15,11 @@ namespace Domain.Cart.Dto
         public int CartId { get; set; }
 
         /// <summary>
+        /// Ввладелец
+        /// </summary>
+        public User User { get; set; }
+
+        /// <summary>
         /// Список продуктов
         /// </summary>
         [JsonProperty("products")]

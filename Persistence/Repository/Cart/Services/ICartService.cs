@@ -13,7 +13,7 @@ namespace Persistence.Repository.Cart.Services
         /// <summary>
         /// Удаление продуктов из корзины
         /// </summary>
-        Task DeleteCartItem(int @cartId, List<int> @productIds);
+        Task DeleteCartItem(int @cartId, int @userId, List<int> @productIds);
 
         /// <summary>
         /// Добавление продуктов в корзину

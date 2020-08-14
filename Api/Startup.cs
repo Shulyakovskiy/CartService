@@ -16,9 +16,6 @@ using Persistence.Core;
 using Persistence.Core.Services;
 using Persistence.Repository.Cart;
 using Persistence.Repository.Cart.Services;
-using Quartz;
-using Quartz.Impl;
-using Quartz.Spi;
 
 namespace Api
 {

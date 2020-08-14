@@ -28,7 +28,7 @@ namespace Api.Controllers
 
         [Route("AddItemsCart")]
         [HttpPost]
-        public async Task<ActionResult<Unit>> AddItemsCart(DeleteProductCart.Command command)
+        public async Task<ActionResult<Unit>> AddItemsCart(AddProductToCart.Command command)
         {
             return await Mediator.Send(command);
         }

@@ -20,7 +20,7 @@ namespace Application.Cart.Command
             public List<int> Products { get; set; }
         }
 
-        public class Handler : IRequestHandler<DeleteProductCart.Command>
+        public class Handler : IRequestHandler<AddProductToCart.Command>
         {
             private readonly ICartService _cartService;
 
@@ -32,7 +32,7 @@ namespace Application.Cart.Command
             /// <summary>
             /// Добавление произвольного числа продуктов
             /// </summary>
-            public async Task<Unit> Handle(DeleteProductCart.Command request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(AddProductToCart.Command request, CancellationToken cancellationToken)
             {
                 var cartId = request.CartId;
                 var productIds = request.Products;

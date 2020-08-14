@@ -32,10 +32,10 @@ namespace Persistence.Repository.Cart
         /// <summary>
         /// Удаление продуктов из корзины
         /// </summary>
-        public async Task DeleteCartItem(int @cartId, List<int> @productIds)
+        public async Task DeleteCartItem(int @cartId, int @userId, List<int> @productIds)
         {
             await Task.Run(() => _repository.GetConnection(c =>
-               c.Execute(@"dbo.DelCartItem_Upd", new { @cartId, productIds = @productIds.AsTableValuedParameter("dbo.ValInt") },
+               c.Execute(@"dbo.DelCartItem_Upd", new { @cartId, @userId, productIds = @productIds.AsTableValuedParameter("dbo.ValInt") },
             commandType: CommandType.StoredProcedure)));
         }
 

@@ -16,6 +16,9 @@ namespace Application.Cart.Command
             [JsonProperty("cartId")]
             public int CartId { get; set; }
 
+            [JsonProperty("userId")]
+            public int UserId { get; set; }
+
             [JsonProperty("products")]
             public List<int> Products { get; set; }
         }
@@ -36,7 +39,9 @@ namespace Application.Cart.Command
             {
                 var cartId = request.CartId;
                 var productIds = request.Products;
-                await _cartService.DeleteCartItem(cartId, productIds);
+                var userUd = request.UserId;
+
+                await _cartService.DeleteCartItem(cartId, userUd, productIds);
                 return Unit.Value;
             }
         }
