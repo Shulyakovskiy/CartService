@@ -6,7 +6,7 @@ using Dapper;
 using Persistence.Core.Services;
 using Persistence.Repository.Cart.Services;
 
-namespace Persistence.Repository.Cart
+namespace Persistence.Repository.Cart.Query
 {
     /// <summary>
     /// Репозиторий товаров и корзин

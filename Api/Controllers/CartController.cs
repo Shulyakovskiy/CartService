@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
 {
+    /// <summary>
+    /// Корзина пользователя
+    /// </summary>
     public class CartController : BaseController
     {
 

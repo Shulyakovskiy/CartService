@@ -14,4 +14,8 @@
     <ProjectReference Include="..\Persistence\Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="WebHooks\Query\" />
+  </ItemGroup>
+
 </Project>

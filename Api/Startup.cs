@@ -15,7 +15,10 @@ using Microsoft.OpenApi.Models;
 using Persistence.Core;
 using Persistence.Core.Services;
 using Persistence.Repository.Cart;
+using Persistence.Repository.Cart.Query;
 using Persistence.Repository.Cart.Services;
+using Persistence.Repository.WebHooks.Query;
+using Persistence.Repository.WebHooks.Services;
 
 namespace Api
 {
@@ -71,13 +74,19 @@ namespace Api
                     Title = "CartService API"
                 });
             });
+
+            #region DI Resolver
+
             //TODO: Вынести в отдельные сервисы для планировщика, изменить SCOPE
             services.AddSingleton<IRepository, CartServiceRepository>();
             services.AddSingleton<IJobCartService, JobCartQuery>();
             services.AddSingleton<ISaveDataToSource, SaveDataToSource>();
+            services.AddSingleton<IWebHookService, WebHookQuery>();
 
             services.AddScoped<ICartService, CartQuery>();
-        
+
+            #endregion
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -6,7 +6,7 @@ using Domain.Cart.Entity;
 using Persistence.Core.Services;
 using Persistence.Repository.Cart.Services;
 
-namespace Persistence.Repository.Cart
+namespace Persistence.Repository.Cart.Query
 {
     public class JobCartQuery : IJobCartService
     {
